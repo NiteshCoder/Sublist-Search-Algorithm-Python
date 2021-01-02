@@ -43,24 +43,34 @@ class Node:
 		self.next = None
 		
 '''
-Actual logic of sublist search algorithm 
+Actual logic of sublist search algorithm .
+- Takes 2 arguments One for data and second one for patter to be searched.
 '''	
 def sublist_pattern_search(data,pattern):
+
+	#Assign data's to temporary variables for doing operations.
 	i = data
 	j = pattern
 	
+	#Loop works untill reach last node of data.
 	while i is not None:
+		#Comparing data with pattern.
 		if i.datavalue == j.datavalue:
 			print(f"\n{ i.datavalue } == { j.datavalue }")
 			
+			#Test case 1 : If both the node getting end simultaneously
 			if i.next is None and j.next is None:
+				'''
+				Test case 2 :Pattern and data completes at same iteration.
+							 here condition forlast data is same or not.
+				'''
 				if i.datavalue==j.datavalue:
 					return True
 					break;
 				else:
 					return False;
 					break;
-					
+			#If Data is smaller then Pattern.		
 			if i.next is None:
 				#print("\nData Finished.")
 				return False;
@@ -68,6 +78,7 @@ def sublist_pattern_search(data,pattern):
 			else:
 				i = i.next
 			
+			#If Pattern reach last element.
 			if j.next is None:
 				#print("\nPattern Finished.")
 				return True;
@@ -80,6 +91,12 @@ def sublist_pattern_search(data,pattern):
 	
 if __name__ == "__main__":
 	
+	'''
+	Creating intances of class and make 4 nodes then connects all the nodes with next value
+	address.
+	
+	Singly link list.
+	'''
 	print("\n--------------LINK LIST------------------")
 	node_1 = Node(1)
 	node_2 = Node(2)
@@ -91,11 +108,13 @@ if __name__ == "__main__":
 	node_3.next = node_4
 	node_4.next = None
 	
+	#Printing elements on output window.
 	i = node_1
 	while i is not None:
 		print(f"{i.datavalue} -> ",end=" ")
 		i = i.next
-		
+	
+	#Same as data here Search Pattern initialised.
 	print("\n\n--------------SEARCHING FOR------------- ")	
 	node_a = Node(4)
 	node_b = Node(5)
@@ -103,13 +122,14 @@ if __name__ == "__main__":
 	node_a.next = node_b
 	node_b.next = None
 	
+
+	#Printing elements on output window.
 	j = node_a
 	while j is not None:
 		print(f"{ j.datavalue }-> ",end=" ")
 		j = j.next
 		
-	
-	
+	#Calling sublist_pattern_search() Function. It will verify existence of pattern. 
 	print("\n--------------RESULT------------------")
 	if sublist_pattern_search(node_1,node_a):
 		print("FOUND")
